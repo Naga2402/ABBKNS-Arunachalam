@@ -44,13 +44,20 @@
     }
 
     .hero-gradient {
-      /* Neutral dark overlay for text readability — no yellow tint so the hero image shows its true colors */
+      /* Dark tint overlay for text readability */
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 100%);
     }
+    /* Light mode: stronger dark tint over hero image so text (gold tagline, dark title) is clearly visible */
+    html:not(.dark) .hero-gradient {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+    }
     /* Hero text: readable in both light and dark mode */
-    .hero-tagline { color: #1f2937; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
-    .hero-title { color: #1f2937; text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.5); }
-    .hero-subtitle { color: #374151; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+    /* .hero-tagline { color: #fcd34d; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+    .hero-title { color: #374151; text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.5); }
+    .hero-subtitle { color: #374151; text-shadow: 0 1px 2px rgba(255,255,255,0.8); } */
+    .hero-tagline { color: #C0392B; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+    .hero-title { color: #C0392B; text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.5); }
+    .hero-subtitle { color: #C0392B; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
     html.dark .hero-tagline { color: #fcd34d; text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7); }
     html.dark .hero-title { color: #fff; text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 2px 12px rgba(0,0,0,0.8); }
     html.dark .hero-subtitle { color: rgba(255,248,240,0.95); text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.6); }
