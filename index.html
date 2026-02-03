@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,118 +23,494 @@
     };
   </script>
   <style>
-    @keyframes omReveal { from { opacity: 0; letter-spacing: 0.5em; } to { opacity: 1; letter-spacing: 0.15em; } }
-    .om-mantra { opacity: 0; }
-    .om-mantra.visible { animation: omReveal 1.2s ease-out forwards; }
-    .hero-gradient { background: linear-gradient(135deg, rgba(192,57,43,0.85) 0%, rgba(184,134,11,0.75) 50%, rgba(230,126,34,0.8) 100%); }
-    html { scroll-behavior: smooth; }
+    @keyframes omReveal {
+      from {
+        opacity: 0;
+        letter-spacing: 0.5em;
+      }
+
+      to {
+        opacity: 1;
+        letter-spacing: 0.15em;
+      }
+    }
+
+    .om-mantra {
+      opacity: 0;
+    }
+
+    .om-mantra.visible {
+      animation: omReveal 1.2s ease-out forwards;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(192, 57, 43, 0.85) 0%, rgba(184, 134, 11, 0.75) 50%, rgba(230, 126, 34, 0.8) 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Thin, subtle scrollbar — nearly invisible */
-    html { scrollbar-width: thin; scrollbar-color: rgba(212, 175, 55, 0.25) transparent; }
-    html::-webkit-scrollbar { width: 6px; height: 6px; }
-    html::-webkit-scrollbar-track { background: transparent; }
-    html::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.2); border-radius: 3px; }
-    html::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.35); }
-    .feature-card { transition: transform 0.2s, box-shadow 0.2s; }
-    .feature-card:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1); }
-    .btn-interested:disabled { opacity: 0.7; cursor: default; }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(212, 175, 55, 0.25) transparent;
+    }
+
+    html::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    html::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    html::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 3px;
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+      background: rgba(212, 175, 55, 0.35);
+    }
+
+    .feature-card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-interested:disabled {
+      opacity: 0.7;
+      cursor: default;
+    }
+
     @keyframes scrollBanner {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
-    .banner-track { animation: scrollBanner 28s linear infinite; display: flex; }
-    .banner-track:hover { animation-play-state: paused; }
-    .banner-wrap { mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); }
+
+    .banner-track {
+      animation: scrollBanner 28s linear infinite;
+      display: flex;
+    }
+
+    .banner-track:hover {
+      animation-play-state: paused;
+    }
+
+    .banner-wrap {
+      mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+    }
+
     /* Responsive: prevent horizontal overflow, safe areas */
-    body { overflow-x: hidden; min-width: 0; }
-    img { max-width: 100%; height: auto; }
+    body {
+      overflow-x: hidden;
+      min-width: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     /* Back to top */
-    #back-to-top { opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
-    #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    #back-to-top {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
     @media (hover: hover) {
-      .feature-card:hover { transform: translateY(-2px); }
+      .feature-card:hover {
+        transform: translateY(-2px);
+      }
     }
+
     @media (max-width: 640px) {
-      .banner-item { padding-left: 1rem; padding-right: 1rem; font-size: 0.875rem; letter-spacing: 0.15em; }
+      .banner-item {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 0.875rem;
+        letter-spacing: 0.15em;
+      }
     }
-    .footer-heart { color: #dc2626; }
+
+    .footer-heart {
+      color: #dc2626;
+    }
+
     /* Dark mode: override all backgrounds and text so nothing is missed */
     html.dark body,
-    html.dark .bg-offwhite { background-color: #111827; }
-    html.dark .bg-white { background-color: #1f2937; }
-    html.dark .bg-cream { background-color: #374151; }
+    html.dark .bg-offwhite {
+      background-color: #111827;
+    }
+
+    html.dark .bg-white {
+      background-color: #1f2937;
+    }
+
+    html.dark .bg-cream {
+      background-color: #374151;
+    }
+
     html.dark .text-gray-800,
-    html.dark .text-gray-700 { color: #e5e7eb; }
-    html.dark .text-gray-600 { color: #d1d5db; }
-    html.dark .text-gray-500 { color: #9ca3af; }
-    html.dark .text-gray-400 { color: #9ca3af; }
+    html.dark .text-gray-700 {
+      color: #e5e7eb;
+    }
+
+    html.dark .text-gray-600 {
+      color: #d1d5db;
+    }
+
+    html.dark .text-gray-500 {
+      color: #9ca3af;
+    }
+
+    html.dark .text-gray-400 {
+      color: #9ca3af;
+    }
+
     html.dark .border-gold\/10,
-    html.dark .border-gold\/20 { border-color: rgba(212, 175, 55, 0.25); }
-    html.dark .bg-gray-900 { background-color: #0f172a; }
-    html.dark .text-gray-400 { color: #94a3b8; }
-    html.dark footer p { color: #94a3b8; }
-    html.dark .text-gray-500.text-xs { color: #94a3b8; }
-    html.dark .text-gray-600.text-xs { color: #94a3b8; }
+    html.dark .border-gold\/20 {
+      border-color: rgba(212, 175, 55, 0.25);
+    }
+
+    html.dark .bg-gray-900 {
+      background-color: #0f172a;
+    }
+
+    html.dark .text-gray-400 {
+      color: #94a3b8;
+    }
+
+    html.dark footer p {
+      color: #94a3b8;
+    }
+
+    html.dark .text-gray-500.text-xs {
+      color: #94a3b8;
+    }
+
+    html.dark .text-gray-600.text-xs {
+      color: #94a3b8;
+    }
+
     html.dark input,
-    html.dark textarea { background-color: rgba(255,255,255,0.08); color: #f3f4f6; border-color: rgba(212,175,55,0.4); }
+    html.dark textarea {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #f3f4f6;
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
     html.dark input::placeholder,
-    html.dark textarea::placeholder { color: rgba(255,255,255,0.5); }
-    html.dark table tbody tr { border-color: rgba(212,175,55,0.15); }
+    html.dark textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    html.dark table tbody tr {
+      border-color: rgba(212, 175, 55, 0.15);
+    }
+
     html.dark .bg-offwhite.rounded-2xl,
-    html.dark .feature-card { background-color: #1f2937; }
-    html.dark .bg-white.rounded-2xl { background-color: #374151; }
-    html.dark .bg-gold\/10 { background-color: rgba(212,175,55,0.15); }
-    html.dark .bg-saffron-deep\/10 { background-color: rgba(192,57,43,0.2); }
-    html.dark .bg-cream\/50 { background-color: #374151; }
-    html.dark .bg-gradient-to-b { background: linear-gradient(to bottom, #374151, rgba(212,175,55,0.08)); }
-    html.dark #back-to-top { background-color: #c0392b; color: #fef3c7; }
-    html.dark #back-to-top:hover { background-color: #d4af37; color: #1f2937; }
-    html.dark .text-saffron-deep { color: #fbbf24; }
-    html.dark .text-gold-dark { color: #fcd34d; }
+    html.dark .feature-card {
+      background-color: #1f2937;
+    }
+
+    html.dark .bg-white.rounded-2xl {
+      background-color: #374151;
+    }
+
+    html.dark .bg-gold\/10 {
+      background-color: rgba(212, 175, 55, 0.15);
+    }
+
+    html.dark .bg-saffron-deep\/10 {
+      background-color: rgba(192, 57, 43, 0.2);
+    }
+
+    html.dark .bg-cream\/50 {
+      background-color: #374151;
+    }
+
+    html.dark .bg-gradient-to-b {
+      background: linear-gradient(to bottom, #374151, rgba(212, 175, 55, 0.08));
+    }
+
+    html.dark #back-to-top {
+      background-color: #c0392b;
+      color: #fef3c7;
+    }
+
+    html.dark #back-to-top:hover {
+      background-color: #d4af37;
+      color: #1f2937;
+    }
+
+    html.dark .text-saffron-deep {
+      color: #fbbf24;
+    }
+
+    html.dark .text-gold-dark {
+      color: #fcd34d;
+    }
+
     /* Apple-style scroll reveal */
-    .scroll-reveal .reveal-content { opacity: 0; transform: translateY(48px); transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .scroll-reveal.revealed .reveal-content { opacity: 1; transform: translateY(0); }
-    .scroll-reveal .reveal-stagger > * { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .scroll-reveal.revealed .reveal-stagger > * { opacity: 1; transform: translateY(0); }
-    .scroll-reveal .reveal-stagger > *:nth-child(1) { transition-delay: 0.05s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(2) { transition-delay: 0.12s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(3) { transition-delay: 0.19s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(4) { transition-delay: 0.26s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(5) { transition-delay: 0.33s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(6) { transition-delay: 0.4s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(7) { transition-delay: 0.47s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(8) { transition-delay: 0.54s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(9) { transition-delay: 0.61s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(10) { transition-delay: 0.68s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(11) { transition-delay: 0.75s; }
-    .scroll-reveal .reveal-stagger > *:nth-child(12) { transition-delay: 0.82s; }
-    .scroll-reveal .reveal-image { opacity: 0; transform: scale(0.96) translateY(24px); transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .scroll-reveal.revealed .reveal-image { opacity: 1; transform: scale(1) translateY(0); }
-    #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; transition: opacity 0.8s ease-out; }
-    #confetti-canvas.done { opacity: 0; }
+    .scroll-reveal .reveal-content {
+      opacity: 0;
+      transform: translateY(48px);
+      transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-reveal.revealed .reveal-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-reveal .reveal-stagger>* {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-reveal.revealed .reveal-stagger>* {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(2) {
+      transition-delay: 0.12s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(3) {
+      transition-delay: 0.19s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(4) {
+      transition-delay: 0.26s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(5) {
+      transition-delay: 0.33s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(6) {
+      transition-delay: 0.4s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(7) {
+      transition-delay: 0.47s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(8) {
+      transition-delay: 0.54s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(9) {
+      transition-delay: 0.61s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(10) {
+      transition-delay: 0.68s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(11) {
+      transition-delay: 0.75s;
+    }
+
+    .scroll-reveal .reveal-stagger>*:nth-child(12) {
+      transition-delay: 0.82s;
+    }
+
+    .scroll-reveal .reveal-image {
+      opacity: 0;
+      transform: scale(0.96) translateY(24px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-reveal.revealed .reveal-image {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 25;
+      transition: opacity 0.8s ease-out;
+    }
+
+    #confetti-canvas.done {
+      opacity: 0;
+    }
+
     /* Announcement modal */
-    #announcement-modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-    #announcement-modal.show { opacity: 1; visibility: visible; }
-    #announcement-modal .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-    #announcement-modal .modal-card { position: relative; max-width: 28rem; width: 100%; background: #fff; border-radius: 1rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid rgba(212,175,55,0.2); overflow: hidden; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    html.dark #announcement-modal .modal-card { background: #1f2937; }
-    #announcement-modal.show .modal-card { transform: scale(1); }
-    .comment-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #C0392B, #D4AF37); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1rem; flex-shrink: 0; }
+    #announcement-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #announcement-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #announcement-modal .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    #announcement-modal .modal-card {
+      position: relative;
+      max-width: 28rem;
+      width: 100%;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      overflow: hidden;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html.dark #announcement-modal .modal-card {
+      background: #1f2937;
+    }
+
+    #announcement-modal.show .modal-card {
+      transform: scale(1);
+    }
+
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C0392B, #D4AF37);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
     /* Light/dark image toggle — crossfade transition */
-    .image-light-dark-wrap { position: relative; }
+    .image-light-dark-wrap {
+      position: relative;
+    }
+
     .image-light-dark-wrap .image-light-layer,
-    .image-light-dark-wrap .image-dark-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease; }
-    .image-light-dark-wrap .image-dark-layer { opacity: 0; pointer-events: none; }
-    .image-light-dark-wrap.show-dark .image-light-layer { opacity: 0; pointer-events: none; }
-    .image-light-dark-wrap.show-dark .image-dark-layer { opacity: 1; pointer-events: auto; }
-    .image-light-dark-toggle { position: absolute; top: 0.75rem; right: 0.75rem; z-index: 10; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); background: rgba(255,255,255,0.9); color: #B8860B; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .image-light-dark-toggle:hover { background: rgba(255,255,255,1); color: #C0392B; transform: scale(1.05); }
-    .image-light-dark-toggle .icon-dark { display: none; }
-    .image-light-dark-wrap.show-dark .image-light-dark-toggle .icon-light { display: none; }
-    .image-light-dark-wrap.show-dark .image-light-dark-toggle .icon-dark { display: block; }
-    html.dark .image-light-dark-toggle { background: rgba(31,41,55,0.95); color: #fcd34d; border-color: rgba(251,191,36,0.4); }
-    html.dark .image-light-dark-toggle:hover { background: rgba(55,65,81,0.98); color: #fbbf24; }
+    .image-light-dark-wrap .image-dark-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+
+    .image-light-dark-wrap .image-dark-layer {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .image-light-dark-wrap.show-dark .image-light-layer {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .image-light-dark-wrap.show-dark .image-dark-layer {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .image-light-dark-toggle {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 10;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      background: rgba(255, 255, 255, 0.9);
+      color: #B8860B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-light-dark-toggle:hover {
+      background: rgba(255, 255, 255, 1);
+      color: #C0392B;
+      transform: scale(1.05);
+    }
+
+    .image-light-dark-toggle .icon-dark {
+      display: none;
+    }
+
+    .image-light-dark-wrap.show-dark .image-light-dark-toggle .icon-light {
+      display: none;
+    }
+
+    .image-light-dark-wrap.show-dark .image-light-dark-toggle .icon-dark {
+      display: block;
+    }
+
+    html.dark .image-light-dark-toggle {
+      background: rgba(31, 41, 55, 0.95);
+      color: #fcd34d;
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+
+    html.dark .image-light-dark-toggle:hover {
+      background: rgba(55, 65, 81, 0.98);
+      color: #fbbf24;
+    }
   </style>
 </head>
+
 <body class="bg-offwhite text-gray-800 font-sans antialiased min-h-screen transition-colors duration-200">
   <span id="top" class="sr-only">Top of page</span>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
@@ -146,61 +523,104 @@
         <p class="text-gold-light text-sm font-serif tracking-wider uppercase">🕉 Announcement</p>
       </div>
       <div class="px-6 py-6 text-center text-gray-700 dark:text-gray-200">
-        <h2 id="announcement-title" class="text-xl font-serif font-bold text-saffron-deep dark:text-amber-200 mb-3">We would like to hear from you!!!</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">Share your feedback with us — your message will open in WhatsApp so you can send it easily.</p>
+        <h2 id="announcement-title" class="text-xl font-serif font-bold text-saffron-deep dark:text-amber-200 mb-3">We
+          would like to hear from you!!!</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">Share your feedback with us — your message will open in
+          WhatsApp so you can send it easily.</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="#feedback" id="announcement-goto-feedback" class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-dark text-saffron-deep font-semibold px-5 py-3 rounded-xl transition-colors">Take me to feedback</a>
-          <button type="button" id="announcement-close" class="inline-flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-100 font-medium px-5 py-3 rounded-xl transition-colors">Close</button>
+          <a href="#feedback" id="announcement-goto-feedback"
+            class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-dark text-saffron-deep font-semibold px-5 py-3 rounded-xl transition-colors">Take
+            me to feedback</a>
+          <button type="button" id="announcement-close"
+            class="inline-flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-100 font-medium px-5 py-3 rounded-xl transition-colors">Close</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Top bar: Language + Dark/Light toggle -->
-  <div class="top-bar flex items-center justify-end gap-3 sm:gap-4 px-4 py-2 bg-saffron-deep/90 dark:bg-gray-900/95 border-b border-gold/20 sticky top-0 z-50 transition-colors duration-200">
+  <div
+    class="top-bar flex items-center justify-end gap-3 sm:gap-4 px-4 py-2 bg-saffron-deep/90 dark:bg-gray-900/95 border-b border-gold/20 sticky top-0 z-50 transition-colors duration-200">
     <div class="flex items-center gap-1 sm:gap-2 text-sm">
       <span class="text-gold-light/90 dark:text-amber-200 text-xs sm:text-sm mr-1 hidden sm:inline">Language:</span>
-      <button type="button" data-lang="en" class="lang-btn px-2 py-1 rounded font-medium bg-gold/20 text-saffron-deep dark:bg-amber-500/30 dark:text-amber-100 border border-gold/40 dark:border-amber-400/40">EN</button>
-      <button type="button" data-lang="te" class="lang-btn px-2 py-1 rounded font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">తెలుగు</button>
-      <button type="button" data-lang="ta" class="lang-btn px-2 py-1 rounded font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">தமிழ்</button>
+      <button type="button" data-lang="en"
+        class="lang-btn px-2 py-1 rounded font-medium bg-gold/20 text-saffron-deep dark:bg-amber-500/30 dark:text-amber-100 border border-gold/40 dark:border-amber-400/40">EN</button>
+      <button type="button" data-lang="te"
+        class="lang-btn px-2 py-1 rounded font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">తెలుగు</button>
+      <button type="button" data-lang="ta"
+        class="lang-btn px-2 py-1 rounded font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">தமிழ்</button>
     </div>
-    <button type="button" id="theme-toggle" class="p-2 rounded-lg bg-gold/20 hover:bg-gold/30 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 text-saffron-deep dark:text-amber-100 transition-colors" aria-label="Toggle dark mode">
-      <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343L5.636 5.636m12.728 12.728l-.707-.707M6.343 17.657l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-      <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+    <button type="button" id="theme-toggle"
+      class="p-2 rounded-lg bg-gold/20 hover:bg-gold/30 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 text-saffron-deep dark:text-amber-100 transition-colors"
+      aria-label="Toggle dark mode">
+      <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343L5.636 5.636m12.728 12.728l-.707-.707M6.343 17.657l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+      <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>
     </button>
   </div>
 
   <!-- Scrolling banner -->
-  <div class="banner-wrap overflow-hidden bg-saffron-deep border-b-2 border-gold py-2.5 sm:py-3 relative z-30 shadow-lg">
+  <div
+    class="banner-wrap overflow-hidden bg-saffron-deep border-b-2 border-gold py-2.5 sm:py-3 relative z-30 shadow-lg">
     <div class="banner-track flex whitespace-nowrap" style="width: max-content;">
-      <span class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨ Opening on Feb 22 ✦</span>
-      <span class="banner-item px-6 sm:px-10 text-white/90 font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">🕉 ABBKNS · Where Devotion Meets Divine Comfort 🕉</span>
-      <span class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨ Opening on Feb 22 ✦</span>
-      <span class="banner-item px-6 sm:px-10 text-white/90 font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">🕉 ABBKNS · Where Devotion Meets Divine Comfort 🕉</span>
+      <span
+        class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
+        Opening on Feb 22 ✦</span>
+      <span
+        class="banner-item px-6 sm:px-10 text-white/90 font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">🕉
+        ABBKNS · Where Devotion Meets Divine Comfort 🕉</span>
+      <span
+        class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
+        Opening on Feb 22 ✦</span>
+      <span
+        class="banner-item px-6 sm:px-10 text-white/90 font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">🕉
+        ABBKNS · Where Devotion Meets Divine Comfort 🕉</span>
     </div>
   </div>
 
   <!-- Hero -->
   <header class="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
     <div class="absolute inset-0 hero-gradient z-0"></div>
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920')] bg-cover bg-center bg-no-repeat opacity-30 z-0"></div>
+    <div
+      class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920')] bg-cover bg-center bg-no-repeat opacity-30 z-0">
+    </div>
     <div class="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto">
-      <p class="text-gold-light text-sm sm:text-base tracking-[0.3em] uppercase mb-4 font-serif" data-i18n="heroTagline">Akhila Bharatheeya Brahmana Karivena Nityannadana Satram</p>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white drop-shadow-lg leading-tight mb-6" data-i18n="heroTitle">Where Devotion Meets Divine Comfort</h1>
-      <p class="text-cream/90 text-lg sm:text-xl mb-8 max-w-2xl mx-auto" data-i18n="heroSubtitle">A luxury spiritual Satram at the feet of Arunachala</p>
-      <a href="#interest" class="inline-block bg-gold hover:bg-gold-dark text-saffron-deep font-semibold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105" data-i18n="ctaInterest">Show Your Interest</a>
+      <p class="text-gold-light text-sm sm:text-base tracking-[0.3em] uppercase mb-4 font-serif"
+        data-i18n="heroTagline">Akhila Bharatheeya Brahmana Karivena Nityannadana Satram</p>
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white drop-shadow-lg leading-tight mb-6"
+        data-i18n="heroTitle">Where Devotion Meets Divine Comfort</h1>
+      <p class="text-cream/90 text-lg sm:text-xl mb-8 max-w-2xl mx-auto" data-i18n="heroSubtitle">A luxury spiritual
+        Satram at the feet of Arunachala</p>
+      <a href="#interest"
+        class="inline-block bg-gold hover:bg-gold-dark text-saffron-deep font-semibold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+        data-i18n="ctaInterest">Show Your Interest</a>
     </div>
   </header>
 
   <!-- Visitor & Interest strip -->
-  <div class="bg-white dark:bg-gray-800 border-b border-gold/20 py-3 px-4 sticky top-[52px] sm:top-[52px] z-20 shadow-sm transition-colors">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-sm text-gray-600 dark:text-gray-300">
+  <div
+    class="bg-white dark:bg-gray-800 border-b border-gold/20 py-3 px-4 sticky top-[52px] sm:top-[52px] z-20 shadow-sm transition-colors">
+    <div
+      class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-sm text-gray-600 dark:text-gray-300">
       <span class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        <svg class="w-5 h-5 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
         <strong id="visitor-count">—</strong> <span data-i18n="visitors">visitors</span>
       </span>
       <span class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-gold-dark" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <svg class="w-5 h-5 text-gold-dark" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
         <strong id="interested-count">—</strong> <span data-i18n="interested">interested</span>
       </span>
     </div>
@@ -209,8 +629,10 @@
   <!-- 14-Month Miracle -->
   <section id="miracle" class="scroll-reveal py-16 sm:py-24 bg-cream border-y border-gold/20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-12 dark:text-amber-200" data-i18n="miracleTitle">The 14-Month Miracle</h2>
-      <p class="text-center text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto" data-i18n="miracleDesc">From foundation to opening in record time — a testament to devotion and excellence.</p>
+      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-12 dark:text-amber-200"
+        data-i18n="miracleTitle">The 14-Month Miracle</h2>
+      <p class="text-center text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto" data-i18n="miracleDesc">From
+        foundation to opening in record time — a testament to devotion and excellence.</p>
       <div class="flex flex-wrap justify-center gap-6 sm:gap-10">
         <div class="text-center">
           <div class="text-3xl sm:text-4xl font-bold text-gold-dark">Nov 2024</div>
@@ -223,7 +645,8 @@
         </div>
       </div>
       <div class="mt-10 flex justify-center">
-        <div class="inline-flex items-center gap-2 bg-gold/10 text-saffron-deep px-6 py-3 rounded-full font-medium"><span class="text-2xl font-bold">14</span> months · Record construction speed</div>
+        <div class="inline-flex items-center gap-2 bg-gold/10 text-saffron-deep px-6 py-3 rounded-full font-medium">
+          <span class="text-2xl font-bold">14</span> months · Record construction speed</div>
       </div>
     </div>
   </section>
@@ -232,48 +655,71 @@
   <section class="scroll-reveal py-16 sm:py-24 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Spiritual & Divine Touches</h2>
-      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Every detail honours the sacred.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
-        <div id="lift-section" class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-2xl mb-4">🔔</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Chanting Lifts</h3>
-          <p class="text-gray-600 text-sm">Lifts chant <em>Om Namah Shivaya</em> instead of conventional "close the doors" — a blessed ascent every time.</p>
-          <p id="om-mantra" class="om-mantra mt-3 text-gold-dark font-serif text-sm tracking-widest">Om Namah Shivaya</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-2xl mb-4">🕉️</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Golden Shiva on Every Landing</h3>
-          <p class="text-gray-600 text-sm">At every staircase landing, an idol of Lord Shiva — lifelike, carved in golden finish — greets you.</p>
-          <div id="SHIVA_STAIRCASE" class="image-light-dark-wrap mt-4 w-full h-28 rounded-lg overflow-hidden bg-gold/10" data-image-name="shiva_staircase">
-            <img class="image-light-layer absolute inset-0 w-full h-full object-cover" data-layer="light" alt="Golden Shiva Staircase (light)" />
-            <img class="image-dark-layer absolute inset-0 w-full h-full object-cover" data-layer="dark" alt="Golden Shiva Staircase (dark)" />
-            <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
-              <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg></span>
-              <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg></span>
-            </button>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Spiritual & Divine
+          Touches</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Every detail honours the sacred.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+          <div id="lift-section" class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-2xl mb-4">🔔</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Chanting Lifts</h3>
+            <p class="text-gray-600 text-sm">Lifts chant <em>Om Namah Shivaya</em> instead of conventional "close the
+              doors" — a blessed ascent every time.</p>
+            <p id="om-mantra" class="om-mantra mt-3 text-gold-dark font-serif text-sm tracking-widest">Om Namah Shivaya
+            </p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-2xl mb-4">🕉️</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Golden Shiva on Every Landing</h3>
+            <p class="text-gray-600 text-sm">At every staircase landing, an idol of Lord Shiva — lifelike, carved in
+              golden finish — greets you.</p>
+            <div id="SHIVA_STAIRCASE"
+              class="image-light-dark-wrap mt-4 w-full h-28 rounded-lg overflow-hidden bg-gold/10"
+              data-image-name="shiva_staircase">
+              <img class="image-light-layer absolute inset-0 w-full h-full object-cover" data-layer="light"
+                alt="Golden Shiva Staircase (light)" />
+              <img class="image-dark-layer absolute inset-0 w-full h-full object-cover" data-layer="dark"
+                alt="Golden Shiva Staircase (dark)" />
+              <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
+                <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      clip-rule="evenodd" />
+                  </svg></span>
+                <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                  </svg></span>
+              </button>
+            </div>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-2xl mb-4">⛰️</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Giri Valayam</h3>
+            <p class="text-gray-600 text-sm">Giri Valayam as depicted on the Girivalam road — bringing the sacred path
+              into the Satram.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Room Entrance Design</h3>
+            <p class="text-gray-600 text-sm">Room number at the centre in back-lit style; Arunachaleswara logo on top,
+              ABBKNS logo at the bottom.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Main Door Handles</h3>
+            <p class="text-gray-600 text-sm">Each main door handle is 1'-6" long, silver-lined, with engraved "ABBKNS".
+            </p>
           </div>
         </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-2xl mb-4">⛰️</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Giri Valayam</h3>
-          <p class="text-gray-600 text-sm">Giri Valayam as depicted on the Girivalam road — bringing the sacred path into the Satram.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Room Entrance Design</h3>
-          <p class="text-gray-600 text-sm">Room number at the centre in back-lit style; Arunachaleswara logo on top, ABBKNS logo at the bottom.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Main Door Handles</h3>
-          <p class="text-gray-600 text-sm">Each main door handle is 1'-6" long, silver-lined, with engraved "ABBKNS".</p>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -282,45 +728,64 @@
   <section class="scroll-reveal py-16 sm:py-24 bg-cream">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Premium Construction</h2>
-      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Standards beyond star hotels.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger">
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Premium Construction
+        </h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Standards beyond star hotels.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger">
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">False Ceilings — Staircases</h3>
+            <p class="text-gray-600 text-sm">Even staircases have false ceilings; rarely seen in star hotels.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">False Ceilings — Staircases</h3>
-          <p class="text-gray-600 text-sm">Even staircases have false ceilings; rarely seen in star hotels.</p>
-        </div>
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">False Ceiling — Stilt Floor</h3>
+            <p class="text-gray-600 text-sm">Parking (stilt floor) is also clad in false ceiling for a finished look.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">False Ceiling — Stilt Floor</h3>
-          <p class="text-gray-600 text-sm">Parking (stilt floor) is also clad in false ceiling for a finished look.</p>
-        </div>
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">400 Lux Lighting</h3>
+            <p class="text-gray-600 text-sm">Every area lit to high lumen (400 Lux) for clarity and comfort.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">400 Lux Lighting</h3>
-          <p class="text-gray-600 text-sm">Every area lit to high lumen (400 Lux) for clarity and comfort.</p>
-        </div>
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">85 Cylindrical Lights</h3>
+            <p class="text-gray-600 text-sm">All four sides of the elevation are decorated with 85 cylindrical lights.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">85 Cylindrical Lights</h3>
-          <p class="text-gray-600 text-sm">All four sides of the elevation are decorated with 85 cylindrical lights.</p>
-        </div>
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg sm:col-span-2 lg:col-span-1">
-          <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-2a2 2 0 110 4m0 2v2m0-6V4m0 2a2 2 0 100 4m0-2a2 2 0 110 4m0 2v2M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <div
+            class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg sm:col-span-2 lg:col-span-1">
+            <div class="w-12 h-12 rounded-xl bg-saffron-deep/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-saffron-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-2a2 2 0 110 4m0 2v2m0-6V4m0 2a2 2 0 100 4m0-2a2 2 0 110 4m0 2v2M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Entrance Arch</h3>
+            <p class="text-gray-600 text-sm">Specially designed entrance arch; engraving "ABBKNS" in progress.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Entrance Arch</h3>
-          <p class="text-gray-600 text-sm">Specially designed entrance arch; engraving "ABBKNS" in progress.</p>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -329,42 +794,46 @@
   <section class="scroll-reveal py-16 sm:py-24 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Rooms & Comfort</h2>
-      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Every room ready for a family of 4–5.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">📺</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">32" TV & Panel</h3>
-          <p class="text-gray-600 text-sm">32" TV with TV panel in every room.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🛋️</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">2-Seater Sofa</h3>
-          <p class="text-gray-600 text-sm">Comfortable two-seater sofa in each room.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">❄️</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">A.C. & King/Queen Bed</h3>
-          <p class="text-gray-600 text-sm">A.C. and King or Queen size bed in every room.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🛏️</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">6" Mattress & Bedding</h3>
-          <p class="text-gray-600 text-sm">6" high mattress, 2+2 pillows and covers, 1+1 bed sheets.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🚪</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Cupboard & Amenities</h3>
-          <p class="text-gray-600 text-sm">Cupboard sufficient for a family of 4–5; dust bins in room and toilet; curtains for windows.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Rooms & Comfort</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Every room ready for a family of 4–5.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">📺</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">32" TV & Panel</h3>
+            <p class="text-gray-600 text-sm">32" TV with TV panel in every room.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">WEKA Windows</h3>
-          <p class="text-gray-600 text-sm">Windows by WEKA (NCL group) — top-ranking, time-tested acoustic system.</p>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🛋️</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">2-Seater Sofa</h3>
+            <p class="text-gray-600 text-sm">Comfortable two-seater sofa in each room.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">❄️</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">A.C. & King/Queen Bed</h3>
+            <p class="text-gray-600 text-sm">A.C. and King or Queen size bed in every room.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🛏️</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">6" Mattress & Bedding</h3>
+            <p class="text-gray-600 text-sm">6" high mattress, 2+2 pillows and covers, 1+1 bed sheets.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🚪</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Cupboard & Amenities</h3>
+            <p class="text-gray-600 text-sm">Cupboard sufficient for a family of 4–5; dust bins in room and toilet;
+              curtains for windows.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">WEKA Windows</h3>
+            <p class="text-gray-600 text-sm">Windows by WEKA (NCL group) — top-ranking, time-tested acoustic system.</p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -373,29 +842,38 @@
   <section class="scroll-reveal py-16 sm:py-24 bg-cream">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Toilets & Wet Areas</h2>
-      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">False ceilings, full amenities, and zero step-up.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Toilets & Wet Areas
+        </h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">False ceilings, full amenities, and zero step-up.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">False Ceilings in Toilets</h3>
+            <p class="text-gray-600 text-sm">Toilets finished with false ceilings for a premium look.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">False Ceilings in Toilets</h3>
-          <p class="text-gray-600 text-sm">Toilets finished with false ceilings for a premium look.</p>
-        </div>
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🚿</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Geyser, Shower & Essentials</h3>
-          <p class="text-gray-600 text-sm">Geyser, shower, 2 buckets, 2 mugs, and stool in every toilet.</p>
-        </div>
-        <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center text-xl mb-4">🚿</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Geyser, Shower & Essentials</h3>
+            <p class="text-gray-600 text-sm">Geyser, shower, 2 buckets, 2 mugs, and stool in every toilet.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Sunken Wet Areas</h3>
-          <p class="text-gray-600 text-sm">Toilets, balconies, and wash areas are sunken — no step-up inside the toilet; fully water-tight.</p>
+          <div class="feature-card bg-white rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">Sunken Wet Areas</h3>
+            <p class="text-gray-600 text-sm">Toilets, balconies, and wash areas are sunken — no step-up inside the
+              toilet; fully water-tight.</p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -404,32 +882,41 @@
   <section class="scroll-reveal py-16 sm:py-24 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Hidden Excellence</h2>
-      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">No visible cables or pipes; emergency access concealed in tiles.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Hidden Excellence</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">No visible cables or pipes; emergency access
+          concealed in tiles.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">No Hanging Cables or Pipes</h3>
+            <p class="text-gray-600 text-sm">Electric, sanitary, and water supply lines concealed; emergency access
+              behind tiled panels, invisible to the common eye.</p>
           </div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">No Hanging Cables or Pipes</h3>
-          <p class="text-gray-600 text-sm">Electric, sanitary, and water supply lines concealed; emergency access behind tiled panels, invisible to the common eye.</p>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">💧</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">100% Waterproofing</h3>
+            <p class="text-gray-600 text-sm">3mm epoxy filling between tiles; lines run across wall–floor–wall for
+              architectural beautification and total waterproofing.</p>
+          </div>
+          <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">🐜</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">3" Screed Flooring</h3>
+            <p class="text-gray-600 text-sm">Main and toilet floors in 3" screed (concrete); no gaps under tiles — no
+              ants or insects can penetrate.</p>
+          </div>
+          <div
+            class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg sm:col-span-2 lg:col-span-1">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">◇</div>
+            <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">AGL Tiles</h3>
+            <p class="text-gray-600 text-sm">Superior AGL brand — 800×800 for main floor, 600×600 for toilets; no
+              distortion.</p>
+          </div>
         </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">💧</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">100% Waterproofing</h3>
-          <p class="text-gray-600 text-sm">3mm epoxy filling between tiles; lines run across wall–floor–wall for architectural beautification and total waterproofing.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">🐜</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">3" Screed Flooring</h3>
-          <p class="text-gray-600 text-sm">Main and toilet floors in 3" screed (concrete); no gaps under tiles — no ants or insects can penetrate.</p>
-        </div>
-        <div class="feature-card bg-offwhite rounded-2xl p-6 border border-gold/10 shadow-lg sm:col-span-2 lg:col-span-1">
-          <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">◇</div>
-          <h3 class="text-lg font-serif font-semibold text-saffron-deep mb-2">AGL Tiles</h3>
-          <p class="text-gray-600 text-sm">Superior AGL brand — 800×800 for main floor, 600×600 for toilets; no distortion.</p>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -437,12 +924,20 @@
   <!-- Main Elevation Image — folder: images/main_elevation/ with main_elevation_light.jpg & main_elevation_dark.jpg -->
   <section class="scroll-reveal py-12 bg-cream dark:bg-gray-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div id="MAIN_ELEVATION" class="image-light-dark-wrap w-full rounded-2xl shadow-xl aspect-video bg-gold/10 reveal-image" data-image-name="main_elevation">
+      <div id="MAIN_ELEVATION"
+        class="image-light-dark-wrap w-full rounded-2xl shadow-xl aspect-video bg-gold/10 reveal-image"
+        data-image-name="main_elevation">
         <img class="image-light-layer" data-layer="light" alt="Main elevation (light)" />
         <img class="image-dark-layer" data-layer="dark" alt="Main elevation (dark)" />
         <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
-          <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg></span>
-          <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg></span>
+          <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                clip-rule="evenodd" />
+            </svg></span>
+          <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg></span>
         </button>
       </div>
     </div>
@@ -462,10 +957,26 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gold/10">
-            <tr class="bg-offwhite hover:bg-cream transition-colors"><td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Lighting</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">400 Lux</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Standard</td></tr>
-            <tr class="bg-cream/50 hover:bg-cream transition-colors"><td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Mattresses</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">6" Premium</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Thinner</td></tr>
-            <tr class="bg-offwhite hover:bg-cream transition-colors"><td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Toilet Ceilings</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">False Ceilings</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Exposed</td></tr>
-            <tr class="bg-cream/50 hover:bg-cream transition-colors"><td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Flooring</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">3" Concrete Anti-Insect</td><td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Standard</td></tr>
+            <tr class="bg-offwhite hover:bg-cream transition-colors">
+              <td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Lighting</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">400 Lux</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Standard</td>
+            </tr>
+            <tr class="bg-cream/50 hover:bg-cream transition-colors">
+              <td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Mattresses</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">6" Premium</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Thinner</td>
+            </tr>
+            <tr class="bg-offwhite hover:bg-cream transition-colors">
+              <td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Toilet Ceilings</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">False Ceilings</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Exposed</td>
+            </tr>
+            <tr class="bg-cream/50 hover:bg-cream transition-colors">
+              <td class="px-4 py-4 sm:px-6 sm:py-5 font-medium text-gray-800">Flooring</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gold-dark font-semibold">3" Concrete Anti-Insect</td>
+              <td class="px-4 py-4 sm:px-6 sm:py-5 text-gray-500">Standard</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -475,12 +986,20 @@
   <!-- Deluxe Room Image — folder: images/deluxe_room/ with deluxe_room_light.jpg & deluxe_room_dark.jpg -->
   <section class="scroll-reveal py-12 bg-cream dark:bg-gray-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div id="DELUXE_ROOM" class="image-light-dark-wrap w-full rounded-2xl shadow-xl aspect-video bg-gold/10 reveal-image" data-image-name="deluxe_room">
+      <div id="DELUXE_ROOM"
+        class="image-light-dark-wrap w-full rounded-2xl shadow-xl aspect-video bg-gold/10 reveal-image"
+        data-image-name="deluxe_room">
         <img class="image-light-layer" data-layer="light" alt="Deluxe room (light)" />
         <img class="image-dark-layer" data-layer="dark" alt="Deluxe room (dark)" />
         <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
-          <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg></span>
-          <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg></span>
+          <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                clip-rule="evenodd" />
+            </svg></span>
+          <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg></span>
         </button>
       </div>
     </div>
@@ -490,14 +1009,22 @@
   <section class="scroll-reveal py-16 sm:py-24 bg-gradient-to-b from-cream to-gold/5">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="reveal-content">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Annapurna Hall</h2>
-      <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Dining hall with Lord Annapurna, Lord Shiva, and Bhagavan Ramana Maharshi — beautifully carved, painted, and backed by a real mountain-view miniature in FRP, supported by two elephants and a large lotus.</p>
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div class="rounded-2xl overflow-hidden shadow-xl bg-gold/10 aspect-[4/3] min-h-[240px] flex items-center justify-center text-gold-dark/50 font-serif text-center px-4">FRP miniature: Annapurna, Shiva, Ramana Maharshi, mountain view, 2 elephants, lotus — Image placeholder</div>
-        <div>
-          <p class="text-gray-700 leading-relaxed">The dining hall features a massive depiction of Lord Annapurna and Lord Shiva with Bhagavan Ramana Maharshi — beautifully carved and painted, backed by a real miniature mountain view in FRP, supported by two elephants and a big lotus. Every meal is offered in this sacred atmosphere.</p>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-saffron-deep text-center mb-4">Annapurna Hall</h2>
+        <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Dining hall with Lord Annapurna, Lord Shiva, and
+          Bhagavan Ramana Maharshi — beautifully carved, painted, and backed by a real mountain-view miniature in FRP,
+          supported by two elephants and a large lotus.</p>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div
+            class="rounded-2xl overflow-hidden shadow-xl bg-gold/10 aspect-[4/3] min-h-[240px] flex items-center justify-center text-gold-dark/50 font-serif text-center px-4">
+            FRP miniature: Annapurna, Shiva, Ramana Maharshi, mountain view, 2 elephants, lotus — Image placeholder
+          </div>
+          <div>
+            <p class="text-gray-700 leading-relaxed">The dining hall features a massive depiction of Lord Annapurna and
+              Lord Shiva with Bhagavan Ramana Maharshi — beautifully carved and painted, backed by a real miniature
+              mountain view in FRP, supported by two elephants and a big lotus. Every meal is offered in this sacred
+              atmosphere.</p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -506,43 +1033,64 @@
   <section id="interest" class="scroll-reveal py-16 sm:py-20 bg-saffron-deep text-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center reveal-content">
       <h2 class="text-2xl sm:text-3xl font-serif font-bold mb-2" data-i18n="openingTitle">Opening Day — Feb 22</h2>
-      <p class="mb-8 text-cream/90" data-i18n="openingDesc">Let us know if you're interested in experiencing divine comfort at Arunachala.</p>
+      <p class="mb-8 text-cream/90" data-i18n="openingDesc">Let us know if you're interested in experiencing divine
+        comfort at Arunachala.</p>
       <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10">
-        <button type="button" id="btn-interested" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-saffron-deep font-semibold px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <button type="button" id="btn-interested"
+          class="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-saffron-deep font-semibold px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
           <span data-i18n="btnInterested">Interested</span>
         </button>
-        <button type="button" id="btn-not-interested" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold px-6 py-4 rounded-xl border border-white/40 transition-all duration-300">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button type="button" id="btn-not-interested"
+          class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold px-6 py-4 rounded-xl border border-white/40 transition-all duration-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
           <span data-i18n="btnNotInterested">Not Interested</span>
         </button>
       </div>
 
-      <!-- Feedback: number stored encoded in data-n. To encode yours: console: (function(){var k=5,s='YOUR_NUMBER';var x=s.split('').map(function(c){return String.fromCharCode(c.charCodeAt(0)^k);}).join('');console.log('data-n:',btoa(x));})(); -->
-      <div id="feedback" class="mt-12 pt-10 border-t border-gold/30 text-left max-w-md mx-auto"><div id="feedback-box" data-n="PDQ8PTE8NTU0Njww">
-        <h3 class="text-lg font-serif font-semibold text-gold-light mb-4 text-center" data-i18n="feedbackTitle">Leave a comment or feedback</h3>
-        <p class="text-cream/80 text-sm text-center mb-4" data-i18n="feedbackDesc">Your message will open in WhatsApp so you can send it to us.</p>
-        <form id="feedback-form" class="space-y-4">
-          <div>
-            <label for="feedback-name" class="block text-cream/90 text-sm font-medium mb-1" data-i18n="feedbackName">Your name</label>
-            <input type="text" id="feedback-name" name="name" required placeholder="e.g. Ramesh" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gold/40 text-white placeholder-white/50 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition" />
-          </div>
-          <div>
-            <label for="feedback-comment" class="block text-cream/90 text-sm font-medium mb-1" data-i18n="feedbackComment">Comment / Feedback</label>
-            <textarea id="feedback-comment" name="comment" required rows="3" data-i18n-placeholder="feedbackPlaceholder" placeholder="Your message or feedback..." class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gold/40 text-white placeholder-white/50 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition resize-none"></textarea>
-          </div>
-          <button type="submit" id="feedback-submit" class="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span data-i18n="sendWhatsApp">Send via WhatsApp</span>
-          </button>
-        </form>
-      </div>
+      <div id="feedback" class="mt-12 pt-10 border-t border-gold/30 text-left max-w-md mx-auto">
+        <div id="feedback-box" data-n="PDQ8MDA1MTEwMDIy">
+          <h3 class="text-lg font-serif font-semibold text-gold-light mb-4 text-center" data-i18n="feedbackTitle">Leave
+            a comment or feedback</h3>
+          <p class="text-cream/80 text-sm text-center mb-4" data-i18n="feedbackDesc">Your message will open in WhatsApp
+            so you can send it to us.</p>
+          <form id="feedback-form" class="space-y-4">
+            <div>
+              <label for="feedback-name" class="block text-cream/90 text-sm font-medium mb-1"
+                data-i18n="feedbackName">Your name</label>
+              <input type="text" id="feedback-name" name="name" required placeholder="e.g. Ramesh"
+                class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gold/40 text-white placeholder-white/50 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition" />
+            </div>
+            <div>
+              <label for="feedback-comment" class="block text-cream/90 text-sm font-medium mb-1"
+                data-i18n="feedbackComment">Comment / Feedback</label>
+              <textarea id="feedback-comment" name="comment" required rows="3"
+                data-i18n-placeholder="feedbackPlaceholder" placeholder="Your message or feedback..."
+                class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gold/40 text-white placeholder-white/50 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition resize-none"></textarea>
+            </div>
+            <button type="submit" id="feedback-submit"
+              class="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              <span data-i18n="sendWhatsApp">Send via WhatsApp</span>
+            </button>
+          </form>
+        </div>
       </div>
 
       <div class="text-cream/80 text-sm mt-10">
-        <span><strong id="visitor-count-footer">—</strong> <span data-i18n="peopleVisited">people have visited this page</span></span>
+        <span><strong id="visitor-count-footer">—</strong> <span data-i18n="peopleVisited">people have visited this
+            page</span></span>
         <span class="mx-2">·</span>
-        <span><strong id="interested-count-footer">—</strong> <span data-i18n="peopleInterested">people interested</span></span>
+        <span><strong id="interested-count-footer">—</strong> <span data-i18n="peopleInterested">people
+            interested</span></span>
       </div>
     </div>
   </section>
@@ -550,11 +1098,17 @@
   <footer class="py-8 bg-gray-900 text-gray-400 text-center text-sm px-4 dark:bg-gray-950">
     <p>Akhila Bharatheeya Brahmana Karivena Nityannadana Satram · ABBKNS</p>
     <p class="mt-1" data-i18n="footerTagline">Where Devotion Meets Divine Comfort</p>
-    <p class="mt-3 text-gray-500 text-xs dark:text-gray-400">Made with <span class="footer-heart">♥</span> <span data-i18n="madeFor">for ABBKNS</span> · © <span id="footer-year"></span> VIDHITSA Technologies</p>
+    <p class="mt-3 text-gray-500 text-xs dark:text-gray-400">Made with <span class="footer-heart">♥</span> <span
+        data-i18n="madeFor">for ABBKNS</span> · © <span id="footer-year"></span> VIDHITSA Technologies</p>
   </footer>
 
-  <a href="#top" id="back-to-top" class="fixed z-40 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-saffron-deep text-white shadow-lg hover:bg-gold hover:text-saffron-deep focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 transition-colors duration-200" style="bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem)); right: max(1rem, env(safe-area-inset-right, 1rem));" aria-label="Back to top">
-    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  <a href="#top" id="back-to-top"
+    class="fixed z-40 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-saffron-deep text-white shadow-lg hover:bg-gold hover:text-saffron-deep focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 transition-colors duration-200"
+    style="bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem)); right: max(1rem, env(safe-area-inset-right, 1rem));"
+    aria-label="Back to top">
+    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
   </a>
 
   <script>
@@ -679,14 +1233,14 @@
             btn.classList.add('bg-gold/20', 'border', 'border-gold/40', 'text-saffron-deep', 'dark:bg-amber-500/30', 'dark:text-amber-100', 'dark:border-amber-400/40');
           }
         });
-        try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+        try { localStorage.setItem(LANG_KEY, lang); } catch (e) { }
       }
 
       document.querySelectorAll('.lang-btn').forEach(function (btn) {
         btn.addEventListener('click', function () { applyLanguage(btn.getAttribute('data-lang')); });
       });
       var savedLang = '';
-      try { savedLang = localStorage.getItem(LANG_KEY) || ''; } catch (e) {}
+      try { savedLang = localStorage.getItem(LANG_KEY) || ''; } catch (e) { }
       applyLanguage(savedLang === 'te' || savedLang === 'ta' ? savedLang : 'en');
 
       function setTheme(dark) {
@@ -701,7 +1255,7 @@
           if (iconSun) { iconSun.classList.add('hidden'); iconSun.classList.remove('block'); }
           if (iconMoon) iconMoon.classList.remove('hidden');
         }
-        try { localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light'); } catch (e) {}
+        try { localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light'); } catch (e) { }
       }
       var themeToggle = el('theme-toggle');
       if (themeToggle) {
@@ -710,7 +1264,7 @@
         });
       }
       var savedTheme = '';
-      try { savedTheme = localStorage.getItem(THEME_KEY) || ''; } catch (e) {}
+      try { savedTheme = localStorage.getItem(THEME_KEY) || ''; } catch (e) { }
       setTheme(savedTheme === 'dark');
       function showVisitorCount(n) {
         ['visitor-count', 'visitor-count-footer'].forEach(function (id) { var e = el(id); if (e) e.textContent = n; });
@@ -720,10 +1274,10 @@
       }
 
       function hitCount(key, then) {
-        fetch(COUNTAPI + '/hit/' + NAMESPACE + '/' + key).then(function (r) { return r.json(); }).then(then).catch(function () {});
+        fetch(COUNTAPI + '/hit/' + NAMESPACE + '/' + key).then(function (r) { return r.json(); }).then(then).catch(function () { });
       }
       function getCount(key, then) {
-        fetch(COUNTAPI + '/get/' + NAMESPACE + '/' + key).then(function (r) { return r.json(); }).then(then).catch(function () {});
+        fetch(COUNTAPI + '/get/' + NAMESPACE + '/' + key).then(function (r) { return r.json(); }).then(then).catch(function () { });
       }
 
       hitCount('visits', function (res) { if (res && typeof res.value === 'number') showVisitorCount(res.value); });
@@ -781,14 +1335,14 @@
         var key = 'abbkns_announcement_seen';
         function hide() {
           if (modal) modal.classList.remove('show');
-          try { sessionStorage.setItem(key, '1'); } catch (e) {}
+          try { sessionStorage.setItem(key, '1'); } catch (e) { }
         }
         function show() {
           if (modal) modal.classList.add('show');
         }
         if (modal) {
           setTimeout(function () {
-            try { if (sessionStorage.getItem(key)) return; } catch (e) {}
+            try { if (sessionStorage.getItem(key)) return; } catch (e) { }
             show();
           }, 4000);
           if (backdrop) backdrop.addEventListener('click', hide);
@@ -862,4 +1416,5 @@
     })();
   </script>
 </body>
+
 </html>
