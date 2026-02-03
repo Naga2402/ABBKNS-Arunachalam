@@ -1338,16 +1338,36 @@
           try { sessionStorage.setItem(key, '1'); } catch (e) { }
         }
         function show() {
+          try { if (sessionStorage.getItem(key)) return; } catch (e) { }
           if (modal) modal.classList.add('show');
         }
         if (modal) {
-          setTimeout(function () {
-            try { if (sessionStorage.getItem(key)) return; } catch (e) { }
-            show();
-          }, 4000);
+          // Show after 4s on first visit
+          setTimeout(show, 4000);
           if (backdrop) backdrop.addEventListener('click', hide);
           if (closeBtn) closeBtn.addEventListener('click', hide);
           if (gotoBtn) { gotoBtn.addEventListener('click', function () { hide(); }); }
+
+          // Exit-intent: show when user moves mouse toward top (e.g. to close tab) — after a short delay so we don’t trigger on load
+          var exitIntentReady = false;
+          setTimeout(function () { exitIntentReady = true; }, 2000);
+          document.addEventListener('mouseout', function (e) {
+            if (!exitIntentReady) return;
+            if (e.clientY <= 8) show();
+          });
+
+          // When user tries to leave (close tab / refresh / navigate): browser shows “Leave site?”.
+          // If they click “Stay”, we push our feedback announcement modal so they can share feedback.
+          window.addEventListener('beforeunload', function (e) {
+            try { if (sessionStorage.getItem(key)) return; } catch (err) { return; }
+            e.preventDefault();
+            e.returnValue = 'Share your feedback before you go?';
+            setTimeout(function () {
+              try {
+                if (!sessionStorage.getItem(key) && modal) modal.classList.add('show');
+              } catch (err) { }
+            }, 300);
+          });
         }
       })();
 
