@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ABBKNS | Where Devotion Meets Divine Comfort</title>
+  <!-- Preload hero images so they load faster (helps on Netlify and elsewhere) -->
+  <link rel="preload" href="images/hero_background/hero_background_light.jpeg" as="image" />
+  <link rel="preload" href="images/hero_background/hero_background_dark.jpeg" as="image" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -47,20 +50,45 @@
       /* Dark tint overlay for text readability */
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 100%);
     }
+
     /* Light mode: stronger dark tint over hero image so text (gold tagline, dark title) is clearly visible */
     html:not(.dark) .hero-gradient {
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
     }
+
     /* Hero text: readable in both light and dark mode */
     /* .hero-tagline { color: #fcd34d; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
     .hero-title { color: #374151; text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.5); }
     .hero-subtitle { color: #374151; text-shadow: 0 1px 2px rgba(255,255,255,0.8); } */
-    .hero-tagline { color: #C0392B; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
-    .hero-title { color: #C0392B; text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.5); }
-    .hero-subtitle { color: #C0392B; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
-    html.dark .hero-tagline { color: #fcd34d; text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7); }
-    html.dark .hero-title { color: #fff; text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 2px 12px rgba(0,0,0,0.8); }
-    html.dark .hero-subtitle { color: rgba(255,248,240,0.95); text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.6); }
+    .hero-tagline {
+      color: #C0392B;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-title {
+      color: #C0392B;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-subtitle {
+      color: #C0392B;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    html.dark .hero-tagline {
+      color: #fcd34d;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    html.dark .hero-title {
+      color: #fff;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 2px 12px rgba(0, 0, 0, 0.8);
+    }
+
+    html.dark .hero-subtitle {
+      color: rgba(255, 248, 240, 0.95);
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
 
     html {
       scroll-behavior: smooth;
@@ -121,6 +149,21 @@
 
     .banner-track:hover {
       animation-play-state: paused;
+    }
+
+    @keyframes scrollDownBounce {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(8px);
+        opacity: 0.85;
+      }
+    }
+
+    .scroll-down-arrow {
+      animation: scrollDownBounce 2s ease-in-out infinite;
     }
 
     .banner-wrap {
@@ -448,11 +491,13 @@
       visibility: hidden;
       transition: opacity 0.25s ease, visibility 0.25s ease;
     }
+
     #settings-modal.show {
       pointer-events: auto;
       opacity: 1;
       visibility: visible;
     }
+
     #settings-modal .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -463,9 +508,11 @@
       opacity: 0;
       transition: opacity 0.25s ease;
     }
+
     #settings-modal.show .modal-backdrop {
       opacity: 1;
     }
+
     #settings-modal .modal-card {
       position: relative;
       max-width: 22rem;
@@ -479,18 +526,32 @@
       opacity: 0;
       transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s ease;
     }
+
     html.dark #settings-modal .modal-card {
       background: #1f2937;
     }
+
     #settings-modal.show .modal-card {
       transform: translateY(0);
       opacity: 1;
     }
+
     /* Settings button: gear vs X icon */
-    #settings-btn .settings-icon-gear { display: block; }
-    #settings-btn .settings-icon-close { display: none; }
-    #settings-btn.is-open .settings-icon-gear { display: none; }
-    #settings-btn.is-open .settings-icon-close { display: block; }
+    #settings-btn .settings-icon-gear {
+      display: block;
+    }
+
+    #settings-btn .settings-icon-close {
+      display: none;
+    }
+
+    #settings-btn.is-open .settings-icon-gear {
+      display: none;
+    }
+
+    #settings-btn.is-open .settings-icon-close {
+      display: block;
+    }
 
     .comment-avatar {
       width: 40px;
@@ -590,6 +651,7 @@
       inset: 0;
       z-index: 0;
     }
+
     .hero-bg-wrap .hero-bg-light-layer,
     .hero-bg-wrap .hero-bg-dark-layer {
       position: absolute;
@@ -601,18 +663,22 @@
       filter: blur(6px);
       -webkit-filter: blur(6px);
     }
+
     .hero-bg-wrap .hero-bg-dark-layer {
       opacity: 0;
       pointer-events: none;
     }
+
     .hero-bg-wrap.show-dark .hero-bg-light-layer {
       opacity: 0;
       pointer-events: none;
     }
+
     .hero-bg-wrap.show-dark .hero-bg-dark-layer {
       opacity: 1;
       pointer-events: auto;
     }
+
     .hero-bg-toggle {
       position: absolute;
       top: 1rem;
@@ -631,17 +697,21 @@
       transition: background 0.2s, color 0.2s, transform 0.2s;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
+
     .hero-bg-toggle:hover {
       background: rgba(255, 255, 255, 1);
       color: #C0392B;
       transform: scale(1.05);
     }
+
     .hero-bg-toggle .icon-dark {
       display: none;
     }
+
     .hero-bg-wrap.show-dark .hero-bg-toggle .icon-light {
       display: none;
     }
+
     .hero-bg-wrap.show-dark .hero-bg-toggle .icon-dark {
       display: block;
     }
@@ -680,23 +750,38 @@
     <div class="modal-backdrop" id="settings-backdrop"></div>
     <div class="modal-card mx-4">
       <div class="bg-saffron-deep px-6 py-4 text-center flex items-center justify-center gap-2">
-        <svg class="w-5 h-5 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <svg class="w-5 h-5 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
         <h2 id="settings-title" class="text-lg font-serif font-bold text-gold-light">Settings</h2>
       </div>
       <div class="px-6 py-6 space-y-6 text-gray-700 dark:text-gray-200">
         <div>
           <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Language</p>
           <div class="flex flex-wrap gap-2">
-            <button type="button" data-lang="en" class="lang-btn px-3 py-2 rounded-lg font-medium bg-gold/20 text-saffron-deep dark:bg-amber-500/30 dark:text-amber-100 border border-gold/40 dark:border-amber-400/40">EN</button>
-            <button type="button" data-lang="te" class="lang-btn px-3 py-2 rounded-lg font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">తెలుగు</button>
-            <button type="button" data-lang="ta" class="lang-btn px-3 py-2 rounded-lg font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">தமிழ்</button>
+            <button type="button" data-lang="en"
+              class="lang-btn px-3 py-2 rounded-lg font-medium bg-gold/20 text-saffron-deep dark:bg-amber-500/30 dark:text-amber-100 border border-gold/40 dark:border-amber-400/40">EN</button>
+            <button type="button" data-lang="te"
+              class="lang-btn px-3 py-2 rounded-lg font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">తెలుగు</button>
+            <button type="button" data-lang="ta"
+              class="lang-btn px-3 py-2 rounded-lg font-medium text-gold-light hover:bg-gold/20 dark:text-amber-200 dark:hover:bg-amber-500/20 border border-transparent">தமிழ்</button>
           </div>
         </div>
         <div>
           <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Theme</p>
-          <button type="button" id="theme-toggle" class="flex items-center gap-2 px-4 py-3 rounded-lg bg-gold/20 hover:bg-gold/30 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 text-saffron-deep dark:text-amber-100 transition-colors w-full justify-center" aria-label="Toggle dark mode">
-            <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343L5.636 5.636m12.728 12.728l-.707-.707M6.343 17.657l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-            <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <button type="button" id="theme-toggle"
+            class="flex items-center gap-2 px-4 py-3 rounded-lg bg-gold/20 hover:bg-gold/30 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 text-saffron-deep dark:text-amber-100 transition-colors w-full justify-center"
+            aria-label="Toggle dark mode">
+            <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343L5.636 5.636m12.728 12.728l-.707-.707M6.343 17.657l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
             <span id="theme-label">Dark mode</span>
           </button>
         </div>
@@ -712,9 +797,21 @@
         class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
         Grand Opening on Feb 22 ✦</span>
       <span
+        class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
+        Grand Opening on Feb 22 ✦</span>
+        <span
+        class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
+        Grand Opening on Feb 22 ✦</span>
+      <span
         class="banner-item px-6 sm:px-10 text-white/90 font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">🕉
         ABBKNS · Where Devotion Meets Divine Comfort 🕉</span>
       <span
+        class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
+        Grand Opening on Feb 22 ✦</span>
+        <span
+        class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
+        Grand Opening on Feb 22 ✦</span>
+        <span
         class="banner-item px-6 sm:px-10 text-gold-light font-serif text-sm sm:text-base md:text-xl font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">✨
         Grand Opening on Feb 22 ✦</span>
       <span
@@ -730,21 +827,34 @@
       <div class="hero-bg-light-layer" data-layer="light"></div>
       <div class="hero-bg-dark-layer" data-layer="dark"></div>
       <button type="button" class="hero-bg-toggle" aria-label="Toggle light/dark background">
-        <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg></span>
-        <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg></span>
+        <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              clip-rule="evenodd" />
+          </svg></span>
+        <span class="icon-dark"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+          </svg></span>
       </button>
     </div>
     <div class="relative z-10 px-4 sm:px-6 max-w0xl mx-auto">
       <p class="hero-tagline text-sm sm:text-base tracking-[0.3em] uppercase mb-4 font-serif font-bold leading-tight"
         data-i18n="heroTagline">Akhila Bharatheeya Brahmana Karivena Nityannadana Satram</p>
-      <h1
-        class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6"
+      <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6"
         data-i18n="heroTitle">Where Devotion Meets Divine Comfort</h1>
-      <p class="hero-subtitle text-lg sm:text-xl mb-8 max-w-2xl mx-auto font-serif font-bold leading-tight" data-i18n="heroSubtitle">A luxury spiritual
+      <p class="hero-subtitle text-lg sm:text-xl mb-8 max-w-2xl mx-auto font-serif font-bold leading-tight"
+        data-i18n="heroSubtitle">A luxury spiritual
         Satram at the feet of Arunachala</p>
       <a href="#interest"
         class="inline-block bg-white hover:bg-cream text-saffron-deep font-semibold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-saffron-deep/30"
         data-i18n="ctaInterest">Show Your Interest</a>
+      <div class="flex justify-center mt-8" aria-hidden="true" title="Scroll down for more content">
+        <span class="scroll-down-arrow inline-flex flex-col items-center text-saffron-deep dark:text-gold-light pointer-events-none">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </span>
+      </div>
     </div>
   </header>
 
@@ -791,7 +901,8 @@
       </div>
       <div class="mt-10 flex justify-center">
         <div class="inline-flex items-center gap-2 bg-gold/10 text-saffron-deep px-6 py-3 rounded-full font-medium">
-          <span class="text-2xl font-bold">14</span> months · Record construction speed</div>
+          <span class="text-2xl font-bold">14</span> months · Record construction speed
+        </div>
       </div>
     </div>
   </section>
@@ -821,8 +932,8 @@
               class="image-light-dark-wrap mt-4 w-full h-28 rounded-lg overflow-hidden bg-gold/10"
               data-image-name="shiva_staircase">
               <img class="image-light-layer absolute inset-0 w-full h-full object-cover" data-layer="light"
-                alt="Golden Shiva Staircase (light)" />
-              <img class="image-dark-layer absolute inset-0 w-full h-full object-cover" data-layer="dark"
+                loading="lazy" alt="Golden Shiva Staircase (light)" />
+              <img class="image-dark-layer absolute inset-0 w-full h-full object-cover" data-layer="dark" loading="lazy"
                 alt="Golden Shiva Staircase (dark)" />
               <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
                 <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -1072,8 +1183,8 @@
       <div id="MAIN_ELEVATION"
         class="image-light-dark-wrap w-full rounded-2xl shadow-xl aspect-video bg-gold/10 reveal-image"
         data-image-name="main_elevation">
-        <img class="image-light-layer" data-layer="light" alt="Main elevation (light)" />
-        <img class="image-dark-layer" data-layer="dark" alt="Main elevation (dark)" />
+        <img class="image-light-layer" data-layer="light" alt="Main elevation (light)" loading="lazy" />
+        <img class="image-dark-layer" data-layer="dark" alt="Main elevation (dark)" loading="lazy" />
         <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
           <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
@@ -1134,8 +1245,8 @@
       <div id="DELUXE_ROOM"
         class="image-light-dark-wrap w-full rounded-2xl shadow-xl aspect-video bg-gold/10 reveal-image"
         data-image-name="deluxe_room">
-        <img class="image-light-layer" data-layer="light" alt="Deluxe room (light)" />
-        <img class="image-dark-layer" data-layer="dark" alt="Deluxe room (dark)" />
+        <img class="image-light-layer" data-layer="light" alt="Deluxe room (light)" loading="lazy" />
+        <img class="image-dark-layer" data-layer="dark" alt="Deluxe room (dark)" loading="lazy" />
         <button type="button" class="image-light-dark-toggle" aria-label="Toggle light/dark view">
           <span class="icon-light"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
@@ -1251,8 +1362,16 @@
     class="fixed z-40 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-saffron-deep/90 hover:bg-gold text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 transition-colors duration-200 dark:bg-gray-800/95 dark:hover:bg-amber-500/80 dark:text-amber-100"
     style="bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem)); left: max(1rem, env(safe-area-inset-left, 1rem));"
     aria-label="Settings">
-    <span class="settings-icon-gear"><svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
-    <span class="settings-icon-close"><svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></span>
+    <span class="settings-icon-gear"><svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg></span>
+    <span class="settings-icon-close"><svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg></span>
   </button>
 
   <a href="#top" id="back-to-top"
@@ -1266,6 +1385,13 @@
 
   <script>
     (function () {
+      // On refresh, scroll back to the top smoothly (per UI design)
+      if (typeof history !== 'undefined' && history.scrollRestoration) history.scrollRestoration = 'manual';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
       var VISITS_KEY = 'abbkns_visits';
       var INTERESTED_KEY = 'abbkns_interested';
       var INTERESTED_CLICKED_KEY = 'abbkns_interested_clicked';
@@ -1528,29 +1654,25 @@
           if (modal) modal.classList.add('show');
         }
         if (modal) {
-          // Show after 4s on first visit
-          setTimeout(show, 4000);
           if (backdrop) backdrop.addEventListener('click', hide);
           if (closeBtn) closeBtn.addEventListener('click', hide);
           if (gotoBtn) { gotoBtn.addEventListener('click', function () { hide(); }); }
 
-          // Show when user has scrolled past more than two sections (3rd section enters view)
-          var sections = document.querySelectorAll('.scroll-reveal');
-          if (sections.length >= 3) {
-            var thirdSection = sections[2];
-            var scrollTriggerFired = false;
-            var scrollObserver = new IntersectionObserver(function (entries) {
-              entries.forEach(function (entry) {
-                if (scrollTriggerFired) return;
-                if (entry.isIntersecting) {
-                  scrollTriggerFired = true;
-                  show();
-                  scrollObserver.disconnect();
-                }
-              });
-            }, { root: null, rootMargin: '0px', threshold: 0.1 });
-            scrollObserver.observe(thirdSection);
+          // Show once when user has scrolled down past ~1.5 viewport heights (reliable, no section-layout dependency)
+          var scrollTriggerFired = false;
+          var scrollThreshold = Math.max(400, window.innerHeight * 1.5);
+          function checkScroll() {
+            if (scrollTriggerFired) return;
+            if (window.pageYOffset >= scrollThreshold) {
+              scrollTriggerFired = true;
+              show();
+              window.removeEventListener('scroll', onScroll, { passive: true });
+            }
           }
+          function onScroll() { checkScroll(); }
+          window.addEventListener('scroll', onScroll, { passive: true });
+          checkScroll(); // in case already scrolled (e.g. hash in URL)
+          setTimeout(checkScroll, 100); // after layout
 
           // Exit-intent: show when user moves mouse toward top (e.g. to close tab) — after a short delay so we don’t trigger on load
           var exitIntentReady = false;
